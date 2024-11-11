@@ -20,12 +20,6 @@ public class Item {
         return id;
     }
 
-    public void info() {
-        System.out.println(id);
-        System.out.println(name);
-        System.out.println();
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -38,14 +32,4 @@ public class Item {
         this.name = name;
     }
 
-    public static void main(String[] args) {
-        Item empty = new Item();
-        empty.info();
-
-        Item justName = new Item("Alexander");
-        justName.info();
-
-        Item idAndName = new Item(1, "Petr");
-        idAndName.info();
-    }
 }
