@@ -12,6 +12,7 @@ public class Bus implements Transport {
         System.out.println("Вместимость салона: " + count + " пассажир(ов).");
     }
 
+    @Override
     public int refuel(int fuel) {
         int price = fuel * 71;
         System.out.println("Автобус заправлен на: " + fuel  + " литров. "
