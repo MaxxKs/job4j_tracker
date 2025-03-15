@@ -9,7 +9,7 @@ class StartUITest {
     void whenCreateItem() {
         Output output = new ConsoleOutput();
         Input input = new MockInput(
-                new String[]{"0", "Item name", "1"}
+                new String[] {"0", "Item name", "1"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
@@ -78,9 +78,9 @@ class StartUITest {
         Item one = tracker.add(new Item("test1"));
         String replaceName = "New Test Name";
         Input input = new MockInput(
-                new String[]{"0", String.valueOf(one.getId()), replaceName, "1"}
+                new String[] {"0", String.valueOf(one.getId()), replaceName, "1"}
         );
-        UserAction[] actions = new UserAction[]{
+        UserAction[] actions = new UserAction[] {
                 new ReplaceAction(output),
                 new ExitAction(output)
         };
@@ -105,7 +105,7 @@ class StartUITest {
             Tracker tracker = new Tracker();
             Item one = tracker.add(new Item("test1"));
             Input input = new MockInput(
-                    new String[]{"0", "1"}
+                    new String[] {"0", "1"}
             );
             UserAction[] actions = new UserAction[] {
                     new FindAllAction(output),
@@ -132,9 +132,9 @@ class StartUITest {
         Tracker tracker = new Tracker();
         Item one = tracker.add(new Item("test1"));
         Input input = new MockInput(
-                new String[]{"0", String.valueOf(one.getName()), "1"}
+                new String[] {"0", one.getName(), "1"}
         );
-        UserAction[] actions = new UserAction[]{
+        UserAction[] actions = new UserAction[] {
                 new FindByNameAction(output),
                 new ExitAction(output)
         };
@@ -159,9 +159,9 @@ class StartUITest {
         Tracker tracker = new Tracker();
         Item one = tracker.add(new Item("test1"));
         Input input = new MockInput(
-                new String[]{"0", String.valueOf(one.getId()), "1"}
+                new String[] {"0", String.valueOf(one.getId()), "1"}
         );
-        UserAction[] actions = new UserAction[]{
+        UserAction[] actions = new UserAction[] {
                 new FindByIdAction(output),
                 new ExitAction(output)
         };
