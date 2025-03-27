@@ -12,7 +12,29 @@ class ValidateInputTest {
     void whenInvalidInput() {
         Output output = new StubOutput();
         Input in = new MockInput(
-                new String[] {"one", "1", "2", "two", "3", "4", "-5"}
+                new String[] {"one", "1"}
+        );
+        ValidateInput input = new ValidateInput(output, in);
+        int selected = input.askInt("Выбрать: ");
+        assertThat(selected).isEqualTo(1);
+    }
+
+    @Test
+    void whenValidInput() {
+        Output output = new StubOutput();
+        Input in = new MockInput(
+                new String[] {"3"}
+        );
+        ValidateInput input = new ValidateInput(output, in);
+        int selected = input.askInt("Выбрать: ");
+        assertThat(selected).isEqualTo(3);
+    }
+
+    @Test
+    void whenMultipleValidInput() {
+        Output output = new StubOutput();
+        Input in = new MockInput(
+                new String[] {"1", "2", "3"}
         );
         ValidateInput input = new ValidateInput(output, in);
         int selected1 = input.askInt("Выбрать: ");
@@ -21,9 +43,16 @@ class ValidateInputTest {
         assertThat(selected2).isEqualTo(2);
         int selected3 = input.askInt("Выбрать: ");
         assertThat(selected3).isEqualTo(3);
-        int selected4 = input.askInt("Выбрать: ");
-        assertThat(selected4).isEqualTo(4);
-        int selected5 = input.askInt("Выбрать: ");
-        assertThat(selected5).isEqualTo(-5);
+    }
+
+    @Test
+    void whenValidInputNegativ() {
+        Output output = new StubOutput();
+        Input in = new MockInput(
+                new String[] {"-1"}
+        );
+        ValidateInput input = new ValidateInput(output, in);
+        int selected = input.askInt("Выбрать: ");
+        assertThat(selected).isEqualTo(-1);
     }
 }
