@@ -13,6 +13,12 @@ public class UsageMap {
             System.out.println(key + " = " + value);
         }
 
+        System.out.println();
+        map.put("petr@mail.ru", "Иванов Иван Иванович");
+        map.put("smirnov@mail.ru", "Смирнов Игорь Игоревич");
+        map.put("smirnova@mail.ru", "Смирнова Елена Игоревна");
+        map.put("miron@mail.ru", "Миронов Михаил Михайлович");
+
         for (Map.Entry<String, String> entry : map.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
