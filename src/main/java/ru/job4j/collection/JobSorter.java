@@ -13,12 +13,12 @@ public class JobSorter {
                 new Job("Fix bug", 2),
                 new Job("Impl task", 0)
         );
-        Collections.sort(jobs, new JobDescByName().
-                thenComparing(new JobDescByPriority()));
+        Collections.sort(jobs, new JobDescByName()
+                .thenComparing(new JobDescByPriority()));
         System.out.println(jobs);
-        Comparator<Job> combine = new JobDescByNameLength().
-                thenComparing(new JobDescByName()).
-                thenComparing(new JobDescByPriority());
+        Comparator<Job> combine = new JobDescByNameLength()
+                .thenComparing(new JobDescByName())
+                .thenComparing(new JobDescByPriority());
         Collections.sort(jobs, combine);
     }
 }
