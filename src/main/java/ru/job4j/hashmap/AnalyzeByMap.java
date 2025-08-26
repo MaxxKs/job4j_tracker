@@ -35,9 +35,7 @@ public class AnalyzeByMap {
         Map<String, Integer> map = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                String name = subject.name();
-                int score = subject.score();
-                map.put(name, map.getOrDefault(name, 0) + score);
+                map.merge(subject.name(), subject.score(), Integer::sum);
             }
         }
         List<Label> result = new ArrayList<>();
@@ -66,10 +64,7 @@ public class AnalyzeByMap {
         Map<String, Integer> map = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                String name = subject.name();
-                int totalScore = subject.score();
-                map.put(name,
-                        map.getOrDefault(name, 0) + totalScore);
+                map.merge(subject.name(), subject.score(), Integer::sum);
             }
         }
         List<Label> result = new ArrayList<>();
