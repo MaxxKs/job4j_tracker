@@ -48,13 +48,15 @@ public class SqlTracker implements Store {
 
     @Override
     public Item add(Item item) {
-        String sql = "INSERT INTO items(name, created) VALUES (?, ?) RETURNING id";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        String sql = "INSERT INTO items(name, created) VALUES (?, ?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql,
+                Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, item.getName());
             ps.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    item.setId(rs.getInt("id"));
+            ps.executeUpdate();
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    item.setId(generatedKeys.getInt(1));
                 }
             }
         } catch (SQLException e) {
