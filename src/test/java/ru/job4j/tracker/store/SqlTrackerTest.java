@@ -118,4 +118,22 @@ public class SqlTrackerTest {
         List<Item> found = tracker.findByName("first");
         assertThat(found).hasSize(3);
     }
+
+    @Test
+    public void whenDeleteOneItemThenOnlyItIsDeleted() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item first = new Item("first");
+        Item second = new Item("second");
+        Item third = new Item("third");
+
+        tracker.add(first);
+        tracker.add(second);
+        tracker.add(third);
+        tracker.delete(second.getId());
+
+        assertThat(tracker.findById(second.getId())).isNull();
+        assertThat(tracker.findAll()).hasSize(2);
+        assertThat(tracker.findById(first.getId())).isEqualTo(first);
+        assertThat(tracker.findById(third.getId())).isEqualTo(third);
+    }
 }
